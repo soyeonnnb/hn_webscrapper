@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>COOL NEWS | {{title}}</title>
+  <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
+</head>
+</body>
+  <header>
+    <h1>{{title}}</h1>
+    <span>{{points}} points | By: {{detail_author}} | <a href="{{detail_url}}" target="_blank">{{detail_url}}</a></span>
+  </header> 
+  <main>
+  {% for comment in comments %}
+  
+  {% if (comment['author']) %}
+  <strong>{{comment['author']}}:</strong>
+  <p></p>
+  <p>{{comment['text']|safe}}</p>
+  <p></p>
+  {% if (comment['url']) %}
+  <a href="{{comment['url']}}" target="_blank">{{comment['url']}}</a>
+  {% endif %}
+  {% else %}
+  <span>[deleted]</span>
+  {% endif %}
+   <hr>
+  
+  {% endfor %}
+  </main>
+</html>

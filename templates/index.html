@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>COOL NEWS | {% if order_by == "popular" %}
+      Popular
+      {% elif order_by == "new" %}
+      New
+      {% else %}
+      Popular
+      {% endif %}</title>
+  <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
+</head>
+
+<body>
+  <header>
+    <h1>COOL NEWS</h1>
+    <div>
+      <span>Order by: </span>
+      {% if order_by == "popular" %}
+      <strong>Popular</strong>
+      |
+      <a href="?order_by=new">New</a>
+      {% elif order_by == "new" %}
+      <a href="?order_by=popular">Popular</a>
+      |
+      <strong>New</strong>
+      {% else %}
+      <strong>Popular</strong>
+      |
+      <a href="?order_by=new">New</a>
+      {% endif %}
+    </div>
+  </header>
+  <main>
+    {% for article in articles %}
+    <div>
+      <a href="/{{article['id']}}">{{article['title']}}</a>
+      {% if article['url'] %}
+      (<a href="{{article['url']}}" target="_blank">{{article['url']}}</a>)
+      {% endif %}
+    </div>
+    <div>
+      <span>
+    {{article['points']}} points | By: {{article['author']}} | {{article['comments']}} comments
+      </span>
+    </div>
+    <hr>
+    {% endfor %}
+  </main> 
+</body>
+
+</html>
